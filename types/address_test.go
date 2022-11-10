@@ -482,6 +482,13 @@ func (s *addressTestSuite) TestGetFromBech32() {
 	_, err := types.GetFromBech32("", "prefix")
 	s.Require().Error(err)
 	s.Require().Equal("decoding Bech32 address failed: must provide a non empty address", err.Error())
+
+	_, err = types.GetFromBech32("certik1vgpzxfmw8up2gugglj50t2uddlpd5shdwedrlc", "shentu")
+	s.Require().NoError(err)
+
+	_, err = types.GetFromBech32("certikvaloper1vgpzxfmw8up2gugglj50t2uddlpd5shdedfrkz", "shentuvaloper")
+	s.Require().NoError(err)
+
 	_, err = types.GetFromBech32("cosmos1qqqsyqcyq5rqwzqfys8f67", "x")
 	s.Require().Error(err)
 	s.Require().Equal("invalid Bech32 prefix; expected x, got cosmos", err.Error())
